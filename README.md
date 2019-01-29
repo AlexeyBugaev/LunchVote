@@ -15,28 +15,14 @@ User cannot vote for the same restaurant twice.
 
 Admin can create/update/delete restaurants, dishes and users profile.
 
-General REST service
+General REST service:
 
 Get all restaurants
 
 curl request
 $ curl 'http://localhost:8080/restaurants/' -i -u 'user@yandex.ru:password' -X GET
 
-Request structure
-GET /restaurants/ HTTP/1.1
-Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
-Host: localhost:8080
-
-Response structure
-HTTP/1.1 200 OK
-Pragma: no-cache
-X-XSS-Protection: 1; mode=block
-Expires: 0
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Content-Length: 188
+Response
 
 [ {
   "id" : 100001,
@@ -57,21 +43,7 @@ Get all dishes by restaurant id
 curl request
 $ curl 'http://localhost:8080/dishes/?restaurantId=100001' -i -u 'admin@gmail.com:admin' -X GET
 
-Request structure
-GET /dishes/?restaurantId=100001 HTTP/1.1
-Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
-Host: localhost:8080
-
-Response structure
-HTTP/1.1 200 OK
-Pragma: no-cache
-X-XSS-Protection: 1; mode=block
-Expires: 0
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Content-Length: 314
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Response
 
 [ {
   "id" : 100005,
@@ -98,21 +70,7 @@ Vote for restaurant
 curl request
 $ curl 'http://localhost:8080/restaurants/voteForRestaurant/100001' -i -u 'user@yandex.ru:password' -X GET
 
-Request structure
-GET /restaurants/voteForRestaurant/100001 HTTP/1.1
-Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
-Host: localhost:8080
-
-Response structure
-HTTP/1.1 200 OK
-Pragma: no-cache
-X-XSS-Protection: 1; mode=block
-Expires: 0
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Content-Length: 40
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Response
 
 {
   "Restaurant voted" : "BeefHouse"
@@ -123,21 +81,7 @@ Get restaurant selected by vote
 curl request
 $ curl 'http://localhost:8080/restaurants/getVoted' -i -u 'user@yandex.ru:password' -X GET
 
-Request structure
-GET /restaurants/getVoted HTTP/1.1
-Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
-Host: localhost:8080
-
-Response structure
-HTTP/1.1 200 OK
-Pragma: no-cache
-X-XSS-Protection: 1; mode=block
-Expires: 0
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Content-Length: 62
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Response
 
 {
   "id" : 100001,
