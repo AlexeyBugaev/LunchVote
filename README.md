@@ -118,56 +118,6 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
   "Restaurant voted" : "BeefHouse"
 }
 
-Vote for same restaurant twice
-
-curl request
-$ curl 'http://localhost:8080/restaurants/voteForRestaurant/100000' -i -u 'user@yandex.ru:password' -X GET
-
-Request structure
-GET /restaurants/voteForRestaurant/100000 HTTP/1.1
-Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
-Host: localhost:8080
-
-Response structure
-HTTP/1.1 403 Forbidden
-Pragma: no-cache
-X-XSS-Protection: 1; mode=block
-Expires: 0
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Content-Length: 67
-
-{
-  "errorMessage" : "You cannot vote for one restaurant twice"
-}
-
-Vote for restaurant after 11 a.m.
-
-curl request
-$ curl 'http://localhost:8080/restaurants/voteForRestaurant/100001' -i -u 'user@yandex.ru:password' -X GET
-
-Request structure
-GET /restaurants/voteForRestaurant/100001 HTTP/1.1
-Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
-Host: localhost:8080
-
-Response structure
-HTTP/1.1 403 Forbidden
-Pragma: no-cache
-X-XSS-Protection: 1; mode=block
-Expires: 0
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Content-Length: 61
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-
-{
-  "errorMessage" : "Voting is available before 11 a.m."
-}
-
 Get restaurant selected by vote
 
 curl request
