@@ -1,0 +1,313 @@
+= Lunchvote REST Service API Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+== Description
+- API provides RESTful web service that let users to make a vote for restaurant where to have a lunch and get the voted restaurant.
+
+- Each restaurant has list of dishes with prices.
+
+- Two user roles are supported: user and admin.
+
+- User can have a look on each restaurant menu, vote for restaurant, update the profile.
+
+- User can vote for a restaurant only before 11 a.m.
+
+- User cannot vote for the same restaurant twice.
+
+- Admin can create/update/delete restaurants, dishes and users profile.
+
+= Resources
+
+== General REST service
+
+=== Get all restaurants
+
+==== curl request
+
+include::{snippets}/get-all-restaurants/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-all-restaurants/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-all-restaurants/http-response.adoc[]
+
+=== Get all dishes by restaurant id
+
+==== curl request
+
+include::{snippets}/get-all-dishes-by-restaurant-id/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-all-dishes-by-restaurant-id/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-all-dishes-by-restaurant-id/http-response.adoc[]
+
+=== Vote for restaurant
+
+==== curl request
+
+include::{snippets}/vote-for-restaurant/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/vote-for-restaurant/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/vote-for-restaurant/http-response.adoc[]
+
+=== Vote for same restaurant twice
+
+==== curl request
+
+include::{snippets}/vote-for-restaurant-twice/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/vote-for-restaurant-twice/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/vote-for-restaurant-twice/http-response.adoc[]
+
+=== Vote for restaurant after 11 a.m.
+
+==== curl request
+
+include::{snippets}/vote-for-restaurant-out-of-time/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/vote-for-restaurant-out-of-time/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/vote-for-restaurant-out-of-time/http-response.adoc[]
+
+=== Get restaurant selected by vote
+
+==== curl request
+
+include::{snippets}/get-voted-restaurant/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-voted-restaurant/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-voted-restaurant/http-response.adoc[]
+
+== User REST service
+
+=== Get all users
+
+==== curl request
+
+include::{snippets}/get-all-users/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-all-users/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-all-users/http-response.adoc[]
+
+=== Get user
+
+==== curl request
+
+include::{snippets}/get-user/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-user/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-user/http-response.adoc[]
+
+=== Get user by email
+
+==== curl request
+
+include::{snippets}/get-user-by-mail/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-user-by-mail/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-user-by-mail/http-response.adoc[]
+
+=== Delete user
+
+==== curl request
+
+include::{snippets}/delete-user/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/delete-user/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/delete-user/http-response.adoc[]
+
+=== Create user
+
+==== curl request
+
+include::{snippets}/create-user/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/create-user/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/create-user/http-response.adoc[]
+
+=== Update user
+
+==== curl request
+
+include::{snippets}/update-user/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/update-user/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/update-user/http-response.adoc[]
+
+== Restaurant REST service
+
+=== Get restaurant
+
+==== curl request
+
+include::{snippets}/get-restaurant/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-restaurant/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-restaurant/http-response.adoc[]
+
+=== Delete restaurant
+
+==== curl request
+
+include::{snippets}/delete-restaurant/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/delete-restaurant/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/delete-restaurant/http-response.adoc[]
+
+=== Create restaurant
+
+==== curl request
+
+include::{snippets}/create-restaurant/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/create-restaurant/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/create-restaurant/http-response.adoc[]
+
+=== Update restaurant
+
+==== curl request
+
+include::{snippets}/update-restaurant/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/update-restaurant/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/update-restaurant/http-response.adoc[]
+
+
+== Dish REST service
+
+=== Get dish
+
+==== curl request
+
+include::{snippets}/get-dish/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-dish/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-dish/http-response.adoc[]
+
+=== Delete dish
+
+==== curl request
+
+include::{snippets}/delete-dish/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/delete-dish/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/delete-dish/http-response.adoc[]
+
+=== Create dish
+
+==== curl request
+
+include::{snippets}/create-dish/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/create-dish/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/create-dish/http-response.adoc[]
+
+=== Update dish
+
+==== curl request
+
+include::{snippets}/update-dish/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/update-dish/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/update-dish/http-response.adoc[]
