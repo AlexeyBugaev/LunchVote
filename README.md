@@ -94,7 +94,7 @@ Table of Contents
             -   [Request structure](#_request_structure_20)
             -   [Response structure](#_response_structure_20)
 
-[Description](#_description) {#_description}
+<a name="description"></a>(#_description)
 ----------------------------
 
 -   API provides RESTful web service that let users to make a vote for
