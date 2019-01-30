@@ -34,7 +34,7 @@ Table of Contents
         -   [Create dish](#_create_dish)          
         -   [Update dish](#_update_dish)           
 
-[Description](#_description) <a name="description"></a>
+<a name="description">[Description](#_description)</a>
 ----------------------------
 
 -   API provides RESTful web service that let users to make a vote for
