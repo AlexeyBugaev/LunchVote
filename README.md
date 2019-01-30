@@ -6,95 +6,35 @@ Table of Contents
 -   [Description](#_description)
 -   [Resources](#_resources)
     -   [General REST service](#_general_rest_service)
-        -   [Get all restaurants](#_get_all_restaurants)
-            -   [curl request](#_curl_request)
-            -   [Request structure](#_request_structure)
-            -   [Response structure](#_response_structure)
+        -   [Get all restaurants](#_get_all_restaurants)     
         -   [Get all dishes by restaurant
-            id](#_get_all_dishes_by_restaurant_id)
-            -   [curl request](#_curl_request_2)
-            -   [Request structure](#_request_structure_2)
-            -   [Response structure](#_response_structure_2)
-        -   [Vote for restaurant](#_vote_for_restaurant)
-            -   [curl request](#_curl_request_3)
-            -   [Request structure](#_request_structure_3)
-            -   [Response structure](#_response_structure_3)
+            id](#_get_all_dishes_by_restaurant_id)           
+        -   [Vote for restaurant](#_vote_for_restaurant)           
         -   [Vote for same restaurant
-            twice](#_vote_for_same_restaurant_twice)
-            -   [curl request](#_curl_request_4)
-            -   [Request structure](#_request_structure_4)
-            -   [Response structure](#_response_structure_4)
+            twice](#_vote_for_same_restaurant_twice)           
         -   [Vote for restaurant after 11
-            a.m.](#_vote_for_restaurant_after_11_a_m)
-            -   [curl request](#_curl_request_5)
-            -   [Request structure](#_request_structure_5)
-            -   [Response structure](#_response_structure_5)
+            a.m.](#_vote_for_restaurant_after_11_a_m)            
         -   [Get restaurant selected by
-            vote](#_get_restaurant_selected_by_vote)
-            -   [curl request](#_curl_request_6)
-            -   [Request structure](#_request_structure_6)
-            -   [Response structure](#_response_structure_6)
+            vote](#_get_restaurant_selected_by_vote)             
     -   [User REST service](#_user_rest_service)
-        -   [Get all users](#_get_all_users)
-            -   [curl request](#_curl_request_7)
-            -   [Request structure](#_request_structure_7)
-            -   [Response structure](#_response_structure_7)
-        -   [Get user](#_get_user)
-            -   [curl request](#_curl_request_8)
-            -   [Request structure](#_request_structure_8)
-            -   [Response structure](#_response_structure_8)
-        -   [Get user by email](#_get_user_by_email)
-            -   [curl request](#_curl_request_9)
-            -   [Request structure](#_request_structure_9)
-            -   [Response structure](#_response_structure_9)
-        -   [Delete user](#_delete_user)
-            -   [curl request](#_curl_request_10)
-            -   [Request structure](#_request_structure_10)
-            -   [Response structure](#_response_structure_10)
-        -   [Create user](#_create_user)
-            -   [curl request](#_curl_request_11)
-            -   [Request structure](#_request_structure_11)
-            -   [Response structure](#_response_structure_11)
-        -   [Update user](#_update_user)
-            -   [curl request](#_curl_request_12)
-            -   [Request structure](#_request_structure_12)
-            -   [Response structure](#_response_structure_12)
+        -   [Get all users](#_get_all_users)           
+        -   [Get user](#_get_user)          
+        -   [Get user by email](#_get_user_by_email)           
+        -   [Delete user](#_delete_user)          
+        -   [Create user](#_create_user)            
+        -   [Update user](#_update_user)          
     -   [Restaurant REST service](#_restaurant_rest_service)
-        -   [Get restaurant](#_get_restaurant)
-            -   [curl request](#_curl_request_13)
-            -   [Request structure](#_request_structure_13)
-            -   [Response structure](#_response_structure_13)
-        -   [Delete restaurant](#_delete_restaurant)
-            -   [curl request](#_curl_request_14)
-            -   [Request structure](#_request_structure_14)
-            -   [Response structure](#_response_structure_14)
-        -   [Create restaurant](#_create_restaurant)
-            -   [curl request](#_curl_request_15)
-            -   [Request structure](#_request_structure_15)
-            -   [Response structure](#_response_structure_15)
-        -   [Update restaurant](#_update_restaurant)
-            -   [curl request](#_curl_request_16)
-            -   [Request structure](#_request_structure_16)
-            -   [Response structure](#_response_structure_16)
+        -   [Get restaurant](#_get_restaurant)          
+        -   [Delete restaurant](#_delete_restaurant)           
+        -   [Create restaurant](#_create_restaurant)           
+        -   [Update restaurant](#_update_restaurant)           
     -   [Dish REST service](#_dish_rest_service)
-        -   [Get dish](#_get_dish)
-            -   [curl request](#_curl_request_17)
-            -   [Request structure](#_request_structure_17)
-            -   [Response structure](#_response_structure_17)
-        -   [Delete dish](#_delete_dish)
-            -   [curl request](#_curl_request_18)
-            -   [Request structure](#_request_structure_18)
-            -   [Response structure](#_response_structure_18)
-        -   [Create dish](#_create_dish)
-            -   [curl request](#_curl_request_19)
-            -   [Request structure](#_request_structure_19)
-            -   [Response structure](#_response_structure_19)
-        -   [Update dish](#_update_dish)
-            -   [curl request](#_curl_request_20)
-            -   [Request structure](#_request_structure_20)
-            -   [Response structure](#_response_structure_20)
+        -   [Get dish](#_get_dish)          
+        -   [Delete dish](#_delete_dish)           
+        -   [Create dish](#_create_dish)            
+        -   [Update dish](#_update_dish)          
 
-<a name="description"></a>(#_description)
+[Description]<a name="description"></a>
 ----------------------------
 
 -   API provides RESTful web service that let users to make a vote for
@@ -114,21 +54,21 @@ Table of Contents
 -   Admin can create/update/delete restaurants, dishes and users
     profile.
 
-[Resources](#_resources) {#_resources .sect0}
+[Resources]<a name="resources"></a>
 ========================
 
-[General REST service](#_general_rest_service) {#_general_rest_service}
+[General REST service]<a name="general_rest_service"></a>
 ----------------------------------------------
 
-### [Get all restaurants](#_get_all_restaurants) {#_get_all_restaurants}
+### [Get all restaurants]<a name="get_all_restaurants"></a>
 
-#### [curl request](#_curl_request) {#_curl_request}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/restaurants/' -i -u 'user@yandex.ru:password' -X GET
 ```
 
-#### [Request structure](#_request_structure) {#_request_structure}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /restaurants/ HTTP/1.1
@@ -136,7 +76,7 @@ Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure) {#_response_structure}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 200 OK
@@ -164,15 +104,15 @@ Content-Length: 188
 } ]
 ```
 
-### [Get all dishes by restaurant id](#_get_all_dishes_by_restaurant_id) {#_get_all_dishes_by_restaurant_id}
+### [Get all dishes by restaurant id]<a name="get_all_dishes_by_restaurant_id"></a>
 
-#### [curl request](#_curl_request_2) {#_curl_request_2}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/dishes/?restaurantId=100001' -i -u 'admin@gmail.com:admin' -X GET
 ```
 
-#### [Request structure](#_request_structure_2) {#_request_structure_2}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /dishes/?restaurantId=100001 HTTP/1.1
@@ -180,7 +120,7 @@ Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_2) {#_response_structure_2}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 200 OK
@@ -214,15 +154,15 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 } ]
 ```
 
-### [Vote for restaurant](#_vote_for_restaurant) {#_vote_for_restaurant}
+### [Vote for restaurant]<a name="vote_for_restaurant"></a>
 
-#### [curl request](#_curl_request_3) {#_curl_request_3}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/restaurants/voteForRestaurant/100001' -i -u 'user@yandex.ru:password' -X GET
 ```
 
-#### [Request structure](#_request_structure_3) {#_request_structure_3}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /restaurants/voteForRestaurant/100001 HTTP/1.1
@@ -230,7 +170,7 @@ Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_3) {#_response_structure_3}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 200 OK
@@ -248,15 +188,15 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 }
 ```
 
-### [Vote for same restaurant twice](#_vote_for_same_restaurant_twice) {#_vote_for_same_restaurant_twice}
+### [Vote for same restaurant twice]<a name="vote_for_same_restaurant_twice"></a>
 
-#### [curl request](#_curl_request_4) {#_curl_request_4}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/restaurants/voteForRestaurant/100000' -i -u 'user@yandex.ru:password' -X GET
 ```
 
-#### [Request structure](#_request_structure_4) {#_request_structure_4}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /restaurants/voteForRestaurant/100000 HTTP/1.1
@@ -264,7 +204,7 @@ Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_4) {#_response_structure_4}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 403 Forbidden
@@ -282,15 +222,15 @@ Content-Length: 67
 }
 ```
 
-### [Vote for restaurant after 11 a.m.](#_vote_for_restaurant_after_11_a_m) {#_vote_for_restaurant_after_11_a_m}
+### [Vote for restaurant after 11 a.m.]<a name="vote_for_restaurant_after_11_a_m"></a>
 
-#### [curl request](#_curl_request_5) {#_curl_request_5}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/restaurants/voteForRestaurant/100001' -i -u 'user@yandex.ru:password' -X GET
 ```
 
-#### [Request structure](#_request_structure_5) {#_request_structure_5}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /restaurants/voteForRestaurant/100001 HTTP/1.1
@@ -298,7 +238,7 @@ Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_5) {#_response_structure_5}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 403 Forbidden
@@ -316,15 +256,15 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 }
 ```
 
-### [Get restaurant selected by vote](#_get_restaurant_selected_by_vote) {#_get_restaurant_selected_by_vote}
+### [Get restaurant selected by vote]<a name="get_restaurant_selected_by_vote"></a>
 
-#### [curl request](#_curl_request_6) {#_curl_request_6}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/restaurants/getVoted' -i -u 'user@yandex.ru:password' -X GET
 ```
 
-#### [Request structure](#_request_structure_6) {#_request_structure_6}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /restaurants/getVoted HTTP/1.1
@@ -332,7 +272,7 @@ Authorization: Basic dXNlckB5YW5kZXgucnU6cGFzc3dvcmQ=
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_6) {#_response_structure_6}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 200 OK
@@ -352,18 +292,18 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 }
 ```
 
-[User REST service](#_user_rest_service) {#_user_rest_service}
+[User REST service]<a name="user_rest_service"></a>
 ----------------------------------------
 
-### [Get all users](#_get_all_users) {#_get_all_users}
+### [Get all users]
 
-#### [curl request](#_curl_request_7) {#_curl_request_7}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/users/' -i -u 'admin@gmail.com:admin' -X GET
 ```
 
-#### [Request structure](#_request_structure_7) {#_request_structure_7}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /users/ HTTP/1.1
@@ -371,7 +311,7 @@ Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_7) {#_response_structure_7}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 200 OK
@@ -401,15 +341,15 @@ Content-Length: 344
 } ]
 ```
 
-### [Get user](#_get_user) {#_get_user}
+### [Get user]<a name="get_user"></a>
 
-#### [curl request](#_curl_request_8) {#_curl_request_8}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/users/100004' -i -u 'admin@gmail.com:admin' -X GET
 ```
 
-#### [Request structure](#_request_structure_8) {#_request_structure_8}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /users/100004 HTTP/1.1
@@ -417,7 +357,7 @@ Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_8) {#_response_structure_8}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 200 OK
@@ -440,15 +380,15 @@ Content-Length: 169
 }
 ```
 
-### [Get user by email](#_get_user_by_email) {#_get_user_by_email}
+### [Get user by email]<a name="get_user_by_email"></a>
 
-#### [curl request](#_curl_request_9) {#_curl_request_9}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/users/by?email=user@yandex.ru' -i -u 'admin@gmail.com:admin' -X GET
 ```
 
-#### [Request structure](#_request_structure_9) {#_request_structure_9}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 GET /users/by?email=user@yandex.ru HTTP/1.1
@@ -456,7 +396,7 @@ Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_9) {#_response_structure_9}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 200 OK
@@ -479,15 +419,15 @@ Content-Length: 169
 }
 ```
 
-### [Delete user](#_delete_user) {#_delete_user}
+### [Delete user]<a name="delete_user"></a>
 
-#### [curl request](#_curl_request_10) {#_curl_request_10}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/users/100003' -i -u 'admin@gmail.com:admin' -X DELETE
 ```
 
-#### [Request structure](#_request_structure_10) {#_request_structure_10}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 DELETE /users/100003 HTTP/1.1
@@ -495,7 +435,7 @@ Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
 Host: localhost:8080
 ```
 
-#### [Response structure](#_response_structure_10) {#_response_structure_10}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 204 No Content
@@ -507,9 +447,9 @@ X-Content-Type-Options: nosniff
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 ```
 
-### [Create user](#_create_user) {#_create_user}
+### [Create user]<a name="create_user"></a>
 
-#### [curl request](#_curl_request_11) {#_curl_request_11}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/users/' -i -u 'admin@gmail.com:admin' -X POST \
@@ -523,7 +463,7 @@ $ curl 'http://localhost:8080/users/' -i -u 'admin@gmail.com:admin' -X POST \
 }'
 ```
 
-#### [Request structure](#_request_structure_11) {#_request_structure_11}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 POST /users/ HTTP/1.1
@@ -541,7 +481,7 @@ Host: localhost:8080
 }
 ```
 
-#### [Response structure](#_response_structure_11) {#_response_structure_11}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 201 Created
@@ -565,9 +505,9 @@ Content-Length: 168
 }
 ```
 
-### [Update user](#_update_user) {#_update_user}
+### [Update user]<a name="update_user"></a>
 
-#### [curl request](#_curl_request_12) {#_curl_request_12}
+#### [curl request]
 
 ``` {.highlightjs .highlight}
 $ curl 'http://localhost:8080/users/' -i -u 'user@yandex.ru:password' -X PUT \
@@ -582,7 +522,7 @@ $ curl 'http://localhost:8080/users/' -i -u 'user@yandex.ru:password' -X PUT \
 }'
 ```
 
-#### [Request structure](#_request_structure_12) {#_request_structure_12}
+#### [Request structure]
 
 ``` {.highlightjs .highlight .nowrap}
 PUT /users/ HTTP/1.1
@@ -601,7 +541,7 @@ Host: localhost:8080
 }
 ```
 
-#### [Response structure](#_response_structure_12) {#_response_structure_12}
+#### [Response structure]
 
 ``` {.highlightjs .highlight .nowrap}
 HTTP/1.1 204 No Content
