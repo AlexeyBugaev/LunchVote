@@ -3,7 +3,7 @@ Lunchvote REST Service API Guide
 
 Table of Contents
 
--   <a name="description">Description</a>
+-   [Description](#_description)
 -   [Resources](#_resources)
     -   [General REST service](#_general_rest_service)
         -   [Get all restaurants](#_get_all_restaurants)            
