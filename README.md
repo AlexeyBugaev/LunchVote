@@ -3,7 +3,7 @@ Lunchvote REST Service API Guide
 
 Table of Contents
 
--   [Description](#_description)
+-   <a name="description">Description</a>
 -   [Resources](#_resources)
     -   [General REST service](#_general_rest_service)
         -   [Get all restaurants](#_get_all_restaurants)            
@@ -34,7 +34,7 @@ Table of Contents
         -   [Create dish](#_create_dish)          
         -   [Update dish](#_update_dish)           
 
-<a name="description">[Description](#_description)</a>
+[Description](#_description)
 ----------------------------
 
 -   API provides RESTful web service that let users to make a vote for
