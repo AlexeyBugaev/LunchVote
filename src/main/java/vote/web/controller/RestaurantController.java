@@ -68,7 +68,7 @@ public class RestaurantController {
     //In method below previously user voted restaurant votes are decreased, currently voted restaurant votes are increased
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping(value = "/voteForRestaurant/{restaurantId}")
+    @GetMapping(value = "/{restaurantId}/vote")
     public void voteForRestaurant(HttpServletResponse httpServletResponse, @PathVariable("restaurantId") int restaurantId) throws IOException {
         if(RestaurantUtil.timeForVoting()){
             User user = userService.get(SecurityUtil.authUserId());
