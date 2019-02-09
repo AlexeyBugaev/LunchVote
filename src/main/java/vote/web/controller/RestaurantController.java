@@ -19,7 +19,7 @@ import static vote.Utils.RestaurantUtil.*;
 @RestController
 @RequestMapping(value = RestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantController extends AbstractController{
-    static final String REST_URL = "/restaurants";
+    static final String REST_URL = "/rest/restaurants";
 
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable("id") int id) {
