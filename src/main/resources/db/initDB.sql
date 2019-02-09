@@ -12,6 +12,8 @@ CREATE TABLE restaurants (
   name        VARCHAR(255)   NOT NULL,
   votes       INTEGER
 );
+CREATE UNIQUE INDEX restaurants_unique_name
+  ON restaurants (name);
 
 CREATE TABLE users
 (
@@ -22,6 +24,8 @@ CREATE TABLE users
   restaurantVotedId INTEGER,
   FOREIGN KEY (restaurantVotedId) REFERENCES restaurants (id) ON DELETE CASCADE
 );
+CREATE UNIQUE INDEX users_unique_email
+  ON users (email);
 
 CREATE TABLE user_roles
 (
@@ -38,3 +42,5 @@ CREATE TABLE dishes (
   restaurantId  INTEGER,
   FOREIGN KEY (restaurantId) REFERENCES restaurants (id) ON DELETE CASCADE
 );
+CREATE UNIQUE INDEX dishes_unique_name_restaurantId
+  ON dishes (name, restaurantId);
