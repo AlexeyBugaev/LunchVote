@@ -88,7 +88,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
         Restaurant restaurant = new Restaurant(RESTAURANT2);
         User user = new User(USER);
         int votesForRestaurant = restaurant.getVotes();
-        ResultActions action = mockMvc.perform(get(REST_URL + "voteForRestaurant/" + restaurant.getId())
+        ResultActions action = mockMvc.perform(get(REST_URL + restaurant.getId()+ "/vote")
                 .with(userHttpBasic(user)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
