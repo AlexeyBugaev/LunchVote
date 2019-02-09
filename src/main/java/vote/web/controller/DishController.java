@@ -1,5 +1,6 @@
 package vote.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -8,13 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import vote.model.Dish;
 import java.net.URI;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import vote.service.DishService;
+import vote.service.RestaurantService;
+
 import java.util.List;
 
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RestController
 @RequestMapping(value = DishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class DishController extends AbstractController{
+public class DishController {
     static final String REST_URL = "/rest/dishes";
+
+    @Autowired
+    protected RestaurantService restaurantService;
+
+    @Autowired
+    protected DishService dishService;
 
     @GetMapping("/{id}")
     public Dish get(@PathVariable("id") int id) {

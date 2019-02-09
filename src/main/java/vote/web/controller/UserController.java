@@ -1,5 +1,6 @@
 package vote.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -7,14 +8,19 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import vote.model.User;
+import vote.service.UserService;
+
 import java.net.URI;
 import java.util.List;
 
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RestController
 @RequestMapping(UserController.REST_URL)
-public class UserController extends AbstractController{
+public class UserController {
     static final String REST_URL = "/rest/users";
+
+    @Autowired
+    protected UserService userService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {

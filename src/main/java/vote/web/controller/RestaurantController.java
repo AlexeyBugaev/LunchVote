@@ -1,4 +1,5 @@
 package vote.web.controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,9 @@ import vote.Utils.RestaurantUtil;
 import vote.Utils.SecurityUtil;
 import vote.model.Restaurant;
 import vote.model.User;
+import vote.service.RestaurantService;
+import vote.service.UserService;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
@@ -18,8 +22,14 @@ import static vote.Utils.RestaurantUtil.*;
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RestController
 @RequestMapping(value = RestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestaurantController extends AbstractController{
+public class RestaurantController {
     static final String REST_URL = "/rest/restaurants";
+
+    @Autowired
+    protected UserService userService;
+
+    @Autowired
+    protected RestaurantService restaurantService;
 
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable("id") int id) {
