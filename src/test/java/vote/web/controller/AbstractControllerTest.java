@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.restdocs.RestDocumentationExtension;
+import vote.repository.CrudDishRepository;
 import vote.repository.JpaUtil;
-import vote.service.DishService;
 import vote.service.RestaurantService;
 import vote.service.UserService;
 
@@ -57,7 +57,7 @@ abstract public class AbstractControllerTest {
     protected RestaurantService restaurantService;
 
     @Autowired
-    protected DishService dishService;
+    protected CrudDishRepository crudDishRepository;
 
     @Autowired
     private WebApplicationContext webApplicationContext;

@@ -40,7 +40,7 @@ class DishControllerTest extends AbstractControllerTest{
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertMatch(dishService.getAll(), getDishesExcept(DISH1));
+        assertMatch(crudDishRepository.findAll(), getDishesExcept(DISH1));
     }
 
 
@@ -67,7 +67,7 @@ class DishControllerTest extends AbstractControllerTest{
                 .with(userHttpBasic(ADMIN))
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isNoContent());
-        assertMatch(dishService.get(DISH_ID), updated);
+        assertMatch(crudDishRepository.getOne(DISH_ID), updated);
     }
 
     @Test
@@ -83,7 +83,7 @@ class DishControllerTest extends AbstractControllerTest{
         expected.setId(returned.getId());
 
         assertMatch(returned, expected);
-        assertMatch(dishService.getAll(), DISH1, DISH2, DISH3, DISH4, DISH5, DISH6, expected);
+        assertMatch(crudDishRepository.findAll(), DISH1, DISH2, DISH3, DISH4, DISH5, DISH6, expected);
         RestaurantTestData.assertMatch(expected.getRestaurant(), RESTAURANT1);
     }
 }
