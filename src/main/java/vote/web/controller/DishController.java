@@ -38,8 +38,8 @@ public class DishController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping
-    public List<Dish> getAllByRestaurantId(@RequestParam int restaurantId) {
+    @GetMapping("/{restaurantId}/getAll")
+    public List<Dish> getAllByRestaurantId(@PathVariable("restaurantId") int restaurantId) {
         return dishService.getAllByRestaurantId(restaurantId);
     }
 
@@ -49,9 +49,9 @@ public class DishController {
         dishService.update(dish);
     }
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dish> create(@RequestBody Dish dish, @PathVariable("id") int id) {
-        Dish created = dishService.create(dish, restaurantService.get(id));
+    @PostMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dish> create(@RequestBody Dish dish, @PathVariable("restaurantId") int restaurantId) {
+        Dish created = dishService.create(dish, restaurantService.get(restaurantId));
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")

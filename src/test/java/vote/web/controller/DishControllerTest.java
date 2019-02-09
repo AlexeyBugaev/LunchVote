@@ -49,7 +49,7 @@ class DishControllerTest extends AbstractControllerTest{
     void getAllDishesByRestaurantId() throws Exception {
         DISH1.setRestaurant(restaurantService.get(100001));
         DISH5.setRestaurant(restaurantService.get(100001));
-        mockMvc.perform(get(REST_URL + "?restaurantId=" + 100001)
+        mockMvc.perform(get(REST_URL + 100001 + "/getAll")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
