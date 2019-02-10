@@ -1,23 +1,26 @@
 package vote.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import vote.Utils.RestaurantUtil;
 import vote.Utils.SecurityUtil;
 import vote.model.Restaurant;
 import vote.model.User;
-import vote.service.RestaurantService;
-import vote.service.UserService;
+import vote.repository.CrudRestaurantRepository;
+import vote.repository.CrudUserRepository;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import static vote.Utils.RestaurantUtil.*;
+import static vote.Utils.ValidationUtil.checkNotFoundWithId;
 
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RestController
@@ -26,37 +29,39 @@ public class RestaurantController {
     static final String REST_URL = "/rest/restaurants";
 
     @Autowired
-    protected UserService userService;
+    private CrudRestaurantRepository crudRestaurantRepository;
 
     @Autowired
-    protected RestaurantService restaurantService;
+    private CrudUserRepository crudUserRepository;
 
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable("id") int id) {
-        return restaurantService.get(id);
+        return checkNotFoundWithId(crudRestaurantRepository.findById(id).orElse(null), id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") int id) {
-        restaurantService.delete(id);
+        checkNotFoundWithId(crudRestaurantRepository.delete(id)!=0, id);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public List<Restaurant> getAll() {
-        return restaurantService.getAll();
+        return crudRestaurantRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody Restaurant restaurant) {
-        restaurantService.update(restaurant);
+        Assert.notNull(restaurant, "restaurant must not be null");
+        crudRestaurantRepository.save(restaurant);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> create(@RequestBody Restaurant restaurant) {
-        Restaurant created = restaurantService.create(restaurant);
+        Assert.notNull(restaurant, "restaurant must not be null");
+        Restaurant created = crudRestaurantRepository.save(restaurant);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -71,22 +76,22 @@ public class RestaurantController {
     @GetMapping(value = "/{restaurantId}/vote")
     public void voteForRestaurant(HttpServletResponse httpServletResponse, @PathVariable("restaurantId") int restaurantId) throws IOException {
         if(RestaurantUtil.timeForVoting()){
-            User user = userService.get(SecurityUtil.authUserId());
+            User user = crudUserRepository.getOne(SecurityUtil.authUserId());
             Restaurant voted;
             int votedRestaurantId = user.getRestaurantVotedId();
 
             if(votedRestaurantId==restaurantId) setServletResponseErrorMessage(httpServletResponse, "You cannot vote for one restaurant twice");
 
-            if((voted=restaurantService.get(votedRestaurantId))!=null) {
+            if((voted=crudRestaurantRepository.getOne(votedRestaurantId))!=null) {
                 decrementVotes(voted);
-                restaurantService.update(voted);
+                crudRestaurantRepository.save(voted);
             }
 
-            voted = restaurantService.get(restaurantId);
+            voted = crudRestaurantRepository.getOne(restaurantId);
             user.setRestaurantVotedId(restaurantId);
             incrementVotes(voted);
-            restaurantService.update(voted);
-            userService.update(user);
+            crudRestaurantRepository.save(voted);
+            crudUserRepository.save(user);
 
             setServletResponseSuccessMessage(httpServletResponse, voted.getName());
         }
@@ -96,6 +101,6 @@ public class RestaurantController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/getVoted", produces = MediaType.APPLICATION_JSON_VALUE)
     public Restaurant getVoted() {
-        return RestaurantUtil.getVoted(restaurantService.getAll());
+        return RestaurantUtil.getVoted(crudRestaurantRepository.findAll());
     }
 }

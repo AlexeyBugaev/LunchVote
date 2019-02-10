@@ -2,6 +2,7 @@ package vote.web.controller;
 
 
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.ResultActions;
@@ -41,7 +42,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertMatch(restaurantService.getAll(),RESTAURANT2, RESTAURANT3);
+        assertMatch(crudRestaurantRepository.findAll(),RESTAURANT2, RESTAURANT3);
     }
 
     @Test
@@ -64,7 +65,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
                     .content(JsonUtil.writeValue(updated)))
                     .andExpect(status().isNoContent());
 
-            assertMatch(restaurantService.get(RESTAURANT_ID), updated);
+            assertMatch(crudRestaurantRepository.getOne(RESTAURANT_ID), updated);
     }
 
     @Test
@@ -80,7 +81,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
         expected.setId(returned.getId());
 
         assertMatch(returned, expected);
-        assertMatch(restaurantService.getAll(), RESTAURANT2, RESTAURANT1, RESTAURANT3, expected);
+        assertMatch(crudRestaurantRepository.findAll(new Sort(Sort.Direction.ASC, "name")), RESTAURANT2, RESTAURANT1, RESTAURANT3, expected);
     }
 
     @Test
@@ -92,7 +93,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
                 .with(userHttpBasic(user)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-        assertThat(restaurantService.get(restaurant.getId()).getVotes()).isEqualTo(votesForRestaurant+1);
+        assertThat(crudRestaurantRepository.getOne(restaurant.getId()).getVotes()).isEqualTo(votesForRestaurant+1);
         assertThat(action.andReturn().getResponse().getContentAsString().equals("\"Restaurant voted\":\"BeefHouse\""));
     }
 

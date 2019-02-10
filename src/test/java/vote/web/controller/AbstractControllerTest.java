@@ -14,8 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.restdocs.RestDocumentationExtension;
 import vote.repository.CrudDishRepository;
+import vote.repository.CrudRestaurantRepository;
 import vote.repository.JpaUtil;
-import vote.service.RestaurantService;
 import vote.service.UserService;
 
 import javax.annotation.PostConstruct;
@@ -54,7 +54,7 @@ abstract public class AbstractControllerTest {
     protected UserService userService;
 
     @Autowired
-    protected RestaurantService restaurantService;
+    protected CrudRestaurantRepository crudRestaurantRepository;
 
     @Autowired
     protected CrudDishRepository crudDishRepository;

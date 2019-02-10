@@ -29,13 +29,13 @@ public class DishController {
 
     @GetMapping("/{id}")
     public Dish get(@PathVariable("id") int id) {
-        return checkNotFoundWithId(crudDishRepository.findById(id).orElse(null),id);
+        return checkNotFoundWithId(crudDishRepository.findById(id).orElse(null), id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") int id) {
-        checkNotFoundWithId(crudDishRepository.delete(id),id);
+        checkNotFoundWithId(crudDishRepository.delete(id)!=0, id);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
