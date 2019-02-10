@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import static vote.Utils.RestaurantUtil.*;
+import static vote.Utils.ValidationUtil.assureIdConsistent;
 import static vote.Utils.ValidationUtil.checkNotFoundWithId;
 
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -51,9 +52,10 @@ public class RestaurantController {
         return crudRestaurantRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Restaurant restaurant) {
+    public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) {
+        assureIdConsistent(restaurant, id);
         Assert.notNull(restaurant, "restaurant must not be null");
         crudRestaurantRepository.save(restaurant);
     }

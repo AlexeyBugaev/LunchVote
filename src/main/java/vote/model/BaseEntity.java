@@ -1,11 +1,13 @@
 package vote.model;
 
+import vote.web.HasId;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public class BaseEntity {
+public class BaseEntity implements HasId {
     public static final int START_SEQ = 100000;
 
     @Id

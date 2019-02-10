@@ -13,6 +13,8 @@ import vote.service.UserService;
 import java.net.URI;
 import java.util.List;
 
+import static vote.Utils.ValidationUtil.assureIdConsistent;
+
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RestController
 @RequestMapping(UserController.REST_URL)
@@ -49,9 +51,10 @@ public class UserController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@RequestBody User user) {
+    public void update(@RequestBody User user, @PathVariable("id") int id) {
+        assureIdConsistent(user, id);
         userService.update(user);
     }
 

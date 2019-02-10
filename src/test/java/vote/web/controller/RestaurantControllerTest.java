@@ -59,7 +59,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
     void updateRestaurant() throws Exception {
             Restaurant updated = new Restaurant(RESTAURANT1);
             updated.setName("UpdatedName");
-            mockMvc.perform(put (REST_URL)
+            mockMvc.perform(put (REST_URL + RESTAURANT_ID)
                     .contentType(MediaType.APPLICATION_JSON)
                     .with(userHttpBasic(ADMIN))
                     .content(JsonUtil.writeValue(updated)))

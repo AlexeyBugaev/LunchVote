@@ -73,7 +73,7 @@ class UserControllerTest extends AbstractControllerTest{
         User updated = new User(USER);
         updated.setName("UpdatedName");
         updated.setRoles(Collections.singletonList(Role.ROLE_USER));
-        mockMvc.perform(put(REST_URL)
+        mockMvc.perform(put(REST_URL + USER_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(USER))
                 .content(JsonUtil.writeValue(updated)))

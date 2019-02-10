@@ -13,6 +13,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import vote.repository.CrudDishRepository;
 import vote.repository.CrudRestaurantRepository;
 import java.util.List;
+
+import static vote.Utils.ValidationUtil.assureIdConsistent;
 import static vote.Utils.ValidationUtil.checkNotFoundWithId;
 
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -47,7 +49,8 @@ public class DishController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Dish dish) {
+    public void update(@RequestBody Dish dish, @PathVariable("id") int id) {
+        assureIdConsistent(dish, id);
         Assert.notNull(dish, "dish must not be null");
         crudDishRepository.save(dish);
     }
