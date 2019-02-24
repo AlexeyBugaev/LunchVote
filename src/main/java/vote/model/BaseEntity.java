@@ -1,7 +1,6 @@
 package vote.model;
 
 import vote.web.HasId;
-
 import javax.persistence.*;
 import java.util.Objects;
 

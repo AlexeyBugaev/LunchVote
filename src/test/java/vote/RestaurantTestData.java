@@ -3,25 +3,27 @@ package vote;
 import org.springframework.test.web.servlet.ResultMatcher;
 import vote.model.Restaurant;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static vote.model.BaseEntity.START_SEQ;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestaurantTestData {
     public static final int RESTAURANT_ID = START_SEQ;
 
-    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT_ID, "Kolizey", 1);
-    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT_ID+1, "BeefHouse",2 );
-    public static final Restaurant RESTAURANT3 = new Restaurant(RESTAURANT_ID+2, "Ribai", 0);
+    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT_ID, "Kolizey", new AtomicInteger(1));
+    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT_ID+1, "BeefHouse",new AtomicInteger(2) );
+    public static final Restaurant RESTAURANT3 = new Restaurant(RESTAURANT_ID+2, "Ribai", new AtomicInteger(0));
 
 
     public static final List<Restaurant> RESTAURANTS = List.of(RESTAURANT1, RESTAURANT2, RESTAURANT3);
 
     public static Restaurant getCreated() {
-        return new Restaurant(null, "newRestaurant", 3);
+        return new Restaurant(null, "newRestaurant", new AtomicInteger(3));
     }
 
     public static Restaurant getUpdated() {
-        return new Restaurant(RESTAURANT_ID, "updatedRestaurant", 2);
+        return new Restaurant(RESTAURANT_ID, "updatedRestaurant", new AtomicInteger(2));
     }
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {

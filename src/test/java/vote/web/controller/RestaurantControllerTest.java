@@ -10,6 +10,9 @@ import vote.UserTestData;
 import vote.model.Restaurant;
 import vote.model.User;
 import vote.web.json.JsonUtil;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -70,7 +73,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
 
     @Test
     void createRestaurant() throws Exception {
-        Restaurant expected = new Restaurant(null, "Shashlykoff", 3);
+        Restaurant expected = new Restaurant(null, "Shashlykoff", new AtomicInteger(3));
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(ADMIN))
@@ -88,7 +91,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
     void voteForRestaurant() throws Exception {
         Restaurant restaurant = new Restaurant(RESTAURANT2);
         User user = new User(USER);
-        int votesForRestaurant = restaurant.getVotes();
+        int votesForRestaurant = restaurant.getVotes().get();
         ResultActions action = mockMvc.perform(get(REST_URL + restaurant.getId()+ "/vote")
                 .with(userHttpBasic(user)))
                 .andExpect(status().isOk())

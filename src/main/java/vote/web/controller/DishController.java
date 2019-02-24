@@ -58,7 +58,7 @@ public class DishController {
     @PostMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dish> create(@RequestBody Dish dish, @PathVariable("restaurantId") int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
-        checkNotFoundWithId(crudRestaurantRepository.getOne(restaurantId), restaurantId);
+        checkNotFoundWithId(crudRestaurantRepository.findById(restaurantId), restaurantId);
         dish.setRestaurant(crudRestaurantRepository.getOne(restaurantId));
         Dish created = crudDishRepository.save(dish);
 
