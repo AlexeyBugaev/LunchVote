@@ -8,17 +8,26 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import vote.Utils.IllegalRequestDataException;
 import vote.Utils.RestaurantUtil;
 import vote.Utils.SecurityUtil;
 import vote.model.Restaurant;
 import vote.model.User;
+import vote.model.VoteHistory;
+import vote.repository.CrudDishRepository;
 import vote.repository.CrudRestaurantRepository;
 import vote.repository.CrudUserRepository;
+import vote.repository.CrudVoteHistoryRepository;
+import vote.service.UserService;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static vote.Utils.RestaurantUtil.*;
 import static vote.Utils.ValidationUtil.assureIdConsistent;
 import static vote.Utils.ValidationUtil.checkNotFoundWithId;
@@ -33,7 +42,13 @@ public class RestaurantController {
     private CrudRestaurantRepository crudRestaurantRepository;
 
     @Autowired
-    private CrudUserRepository crudUserRepository;
+    private CrudDishRepository crudDishRepository;
+
+    @Autowired
+    private CrudVoteHistoryRepository voteHistoryRepository;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable("id") int id) {
@@ -49,7 +64,10 @@ public class RestaurantController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public List<Restaurant> getAll() {
-        return crudRestaurantRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
+        Restaurant withId100000 = crudRestaurantRepository.findById(100000).orElse(null);
+        List<Restaurant> restaurants = crudRestaurantRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
+        restaurants.remove(withId100000);
+        return restaurants;
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -72,37 +90,58 @@ public class RestaurantController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    //In method below previously user voted restaurant votes are decreased, currently voted restaurant votes are increased
-
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/{restaurantId}/vote")
     public void voteForRestaurant(HttpServletResponse httpServletResponse, @PathVariable("restaurantId") int restaurantId) throws IOException {
-        if(RestaurantUtil.timeForVoting()){
-            User user = crudUserRepository.getOne(SecurityUtil.authUserId());
-            Restaurant voted;
-            int votedRestaurantId = user.getRestaurantVotedId();
+        if(restaurantId==100000) throw new IllegalRequestDataException("No restaurant available for id = 100000");
+        User user = userService.get(SecurityUtil.authUserId());
+        Restaurant voted;
+        int votedRestaurantId = user.getRestaurantVotedId();
 
-            if(votedRestaurantId==restaurantId) setServletResponseErrorMessage(httpServletResponse, "You cannot vote for one restaurant twice");
-
-            if((voted=crudRestaurantRepository.getOne(votedRestaurantId))!=null) {
-                decrementVotes(voted);
-                crudRestaurantRepository.save(voted);
-            }
-
-            voted = crudRestaurantRepository.getOne(restaurantId);
-            user.setRestaurantVotedId(restaurantId);
-            incrementVotes(voted);
-            crudRestaurantRepository.save(voted);
-            crudUserRepository.save(user);
-
+        if(!user.isVoteMade()){
+            voted = incrementVotes(crudRestaurantRepository, restaurantId);
+            user.setVoteMade(true);
+            voteService(voted, restaurantId, user);
             setServletResponseSuccessMessage(httpServletResponse, voted.getName());
         }
-        else setServletResponseErrorMessage(httpServletResponse, "Voting is available before 11 a.m.");
+
+        else if(RestaurantUtil.voteChangeEnabled()){
+            if (votedRestaurantId == restaurantId) setServletResponseErrorMessage(httpServletResponse, "You cannot vote for one restaurant twice");
+            decrementVotes(crudRestaurantRepository, votedRestaurantId);
+            voteHistoryRepository.delete(user.getId(), LocalDate.now());
+            voted = incrementVotes(crudRestaurantRepository, restaurantId);
+            voteService(voted, restaurantId, user);
+            setServletResponseSuccessMessage(httpServletResponse, voted.getName());
+        }
+
+        else setServletResponseErrorMessage(httpServletResponse, "Change vote is unavailable after 11 a.m.");
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/getVoted", produces = MediaType.APPLICATION_JSON_VALUE)
     public Restaurant getVoted() {
         return RestaurantUtil.getVoted(crudRestaurantRepository.findAll());
+    }
+
+    @GetMapping(value = "/clearVotingData", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void clearVotingData(HttpServletResponse httpServletResponse) throws IOException {
+        crudRestaurantRepository.findAll().forEach(restaurant -> {
+            restaurant.setVotes(new AtomicInteger(0));
+            crudRestaurantRepository.save(restaurant);
+        });
+        userService.getAll().forEach(user -> {
+            user.setVoteMade(false);
+            user.setRestaurantVotedId(100000);
+            userService.update(user);
+        });
+        setServletResponseSuccessMessage(httpServletResponse, "DataClear");
+    }
+
+    private void voteService(Restaurant restaurant, int id, User user){
+        user.setRestaurantVotedId(id);
+        crudDishRepository.getAllByRestaurant(restaurant).forEach(dish ->
+                voteHistoryRepository.save(new VoteHistory(user.getId(), LocalDate.now(), dish.getName(), dish.getPrice(), restaurant.getName()))
+        );
+        userService.update(user);
     }
 }
