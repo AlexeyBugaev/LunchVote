@@ -2,9 +2,7 @@ package vote.model;
 
 import org.springframework.util.CollectionUtils;
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -24,6 +22,9 @@ public class User extends BaseEntity{
 
     @Column(name = "restaurantVotedId")
     private int restaurantVotedId;
+
+    @Column(name = "voteMade")
+    private boolean voteMade;
 
     public User() {
         super();
@@ -61,6 +62,10 @@ public class User extends BaseEntity{
         return roles;
     }
 
+    public boolean isVoteMade() {
+        return voteMade;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -75,5 +80,9 @@ public class User extends BaseEntity{
 
     public void setRoles(Collection<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
+    }
+
+    public void setVoteMade(boolean voteMade) {
+        this.voteMade = voteMade;
     }
 }
