@@ -3,8 +3,11 @@ package vote.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
+import vote.Utils.AtomicIntegerConverter;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
@@ -15,8 +18,9 @@ public class Restaurant extends BaseEntity{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     protected List<Dish> dishes;
 
+    @Convert(converter = AtomicIntegerConverter.class)
     @Column(name = "votes")
-    private int votes;
+    private AtomicInteger votes;
 
     public Restaurant(){
     }
@@ -25,12 +29,12 @@ public class Restaurant extends BaseEntity{
         this(restaurant.getId(), restaurant.getName(), restaurant.getVotes());
     }
 
-    public Restaurant(Integer id, String name, int votes) {
+    public Restaurant(Integer id, String name, AtomicInteger votes) {
         super(id, name);
         this.votes = votes;
     }
 
-    public Restaurant(List<Dish> dishes, int votes) {
+    public Restaurant(List<Dish> dishes, AtomicInteger votes) {
         this.dishes = dishes;
         this.votes = votes;
     }
@@ -39,7 +43,7 @@ public class Restaurant extends BaseEntity{
         return dishes;
     }
 
-    public int getVotes() {
+    public AtomicInteger getVotes() {
         return votes;
     }
 
@@ -47,7 +51,7 @@ public class Restaurant extends BaseEntity{
         this.dishes = dishes;
     }
 
-    public void setVotes(int votes) {
+    public void setVotes(AtomicInteger votes) {
         this.votes = votes;
     }
 }
