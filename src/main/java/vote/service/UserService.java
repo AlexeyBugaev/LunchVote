@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import vote.model.User;
 import vote.repository.CrudUserRepository;
 import vote.web.AuthorizedUser;
@@ -23,6 +24,13 @@ public class UserService implements UserDetailsService {
     private final CrudUserRepository crudUserRepository;
     private final PasswordEncoder passwordEncoder;
 
+    public static User prepareToSave(User user, PasswordEncoder passwordEncoder){
+        String password = user.getPassword();
+        user.setPassword(StringUtils.isEmpty(password)? password : passwordEncoder.encode(password));
+        user.setEmail(user.getEmail().toLowerCase());
+        return user;
+    }
+
     @Autowired
     public UserService(CrudUserRepository crudUserRepository, PasswordEncoder passwordEncoder) {
         this.crudUserRepository = crudUserRepository;
@@ -35,12 +43,12 @@ public class UserService implements UserDetailsService {
 
     public void update(User user){
         Assert.notNull(user, "user must not be null");
-        crudUserRepository.save(user);
+        crudUserRepository.save(prepareToSave(user, passwordEncoder));
     }
 
     public User create(User user){
         Assert.notNull(user, "user must not be null");
-        return crudUserRepository.save(user);
+        return crudUserRepository.save(prepareToSave(user, passwordEncoder));
     }
 
     public User get(int id){
