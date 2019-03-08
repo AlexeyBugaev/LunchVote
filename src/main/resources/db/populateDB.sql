@@ -30,3 +30,9 @@ VALUES ('BeefSteak', 1200, 100001),
 INSERT INTO user_roles (role, user_id)
 VALUES ('ROLE_USER', 100004),
        ('ROLE_ADMIN', 100005);
+
+INSERT INTO users (name, email, password, restaurantVotedId, voteMade)
+VALUES ('VotedUser', 'voted@yandex.ru', '{noop}voted', 100001, true );
+
+INSERT INTO user_roles (role, user_id)
+VALUES ('ROLE_USER', 100015);

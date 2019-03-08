@@ -107,11 +107,13 @@ public class RestaurantController {
 
         else if(RestaurantUtil.voteChangeEnabled()){
             if (votedRestaurantId == restaurantId) setServletResponseErrorMessage(httpServletResponse, "You cannot vote for one restaurant twice");
-            decrementVotes(crudRestaurantRepository, votedRestaurantId);
-            voteHistoryRepository.delete(user.getId(), LocalDate.now());
-            voted = incrementVotes(crudRestaurantRepository, restaurantId);
-            voteService(voted, restaurantId, user);
-            setServletResponseSuccessMessage(httpServletResponse, voted.getName());
+            else {
+                decrementVotes(crudRestaurantRepository, votedRestaurantId);
+                voteHistoryRepository.delete(user.getId(), LocalDate.now());
+                voted = incrementVotes(crudRestaurantRepository, restaurantId);
+                voteService(voted, restaurantId, user);
+                setServletResponseSuccessMessage(httpServletResponse, voted.getName());
+            }
         }
 
         else setServletResponseErrorMessage(httpServletResponse, "Change vote is unavailable after 11 a.m.");

@@ -1,5 +1,6 @@
 package vote.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.util.CollectionUtils;
 import javax.persistence.*;
 import java.util.*;
@@ -12,6 +13,7 @@ public class User extends BaseEntity{
     private String email;
 
     @Column(name = "password")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -36,6 +38,7 @@ public class User extends BaseEntity{
         this.password = password;
         this.restaurantVotedId = restaurantVotedId;
         setRoles(roles);
+        this.voteMade = false;
     }
 
     public User(User user) {
@@ -44,6 +47,15 @@ public class User extends BaseEntity{
 
     public User(Integer id, String name, String email, String password, int restaurantVotedId, Role role, Role... roles) {
         this(id, name, email, password, restaurantVotedId, EnumSet.of(role, roles));
+    }
+
+    public User(Integer id, String name, String email, String password, int restaurantVotedId, boolean voteMade, Role role, Role... roles) {
+        super(id, name);
+        this.email = email;
+        this.password = password;
+        this.restaurantVotedId = restaurantVotedId;
+        this.voteMade = voteMade;
+        setRoles(EnumSet.of(role, roles));
     }
 
     public String getEmail() {

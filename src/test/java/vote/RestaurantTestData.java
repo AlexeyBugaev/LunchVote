@@ -9,25 +9,26 @@ import static vote.model.BaseEntity.START_SEQ;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestaurantTestData {
-    public static final int RESTAURANT_ID = START_SEQ;
+    public static final int RESTAURANT_ID = START_SEQ+1;
 
-    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT_ID, "Kolizey", new AtomicInteger(1));
-    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT_ID+1, "BeefHouse",new AtomicInteger(2) );
-    public static final Restaurant RESTAURANT3 = new Restaurant(RESTAURANT_ID+2, "Ribai", new AtomicInteger(0));
+    public static final Restaurant RESTAURANT = new Restaurant(RESTAURANT_ID-1, "No Restaurant", new AtomicInteger(0));
+    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT_ID, "BeefHouse", new AtomicInteger(0));
+    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT_ID+1, "Shinok",new AtomicInteger(0) );
+    public static final Restaurant RESTAURANT3 = new Restaurant(RESTAURANT_ID+2, "Kolizey", new AtomicInteger(0));
 
 
     public static final List<Restaurant> RESTAURANTS = List.of(RESTAURANT1, RESTAURANT2, RESTAURANT3);
 
     public static Restaurant getCreated() {
-        return new Restaurant(null, "newRestaurant", new AtomicInteger(3));
+        return new Restaurant(null, "newRestaurant", new AtomicInteger(0));
     }
 
     public static Restaurant getUpdated() {
-        return new Restaurant(RESTAURANT_ID, "updatedRestaurant", new AtomicInteger(2));
+        return new Restaurant(RESTAURANT_ID+1, "updatedRestaurant", new AtomicInteger(0));
     }
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "dishes");
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "dishes", "votes");
     }
 
     public static void assertMatch(Iterable<Restaurant> actual, Restaurant... expected) {

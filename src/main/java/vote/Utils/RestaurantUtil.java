@@ -4,6 +4,8 @@ import vote.model.Restaurant;
 import vote.repository.CrudRestaurantRepository;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -23,9 +25,8 @@ public class RestaurantUtil {
     }
 
     public static boolean voteChangeEnabled(){
-        /*LocalDateTime date = LocalDateTime.now();
-        return date.toLocalTime().isBefore(LocalTime.of(11,0));*/
-        return true;
+        LocalDateTime date = LocalDateTime.now();
+        return date.toLocalTime().isBefore(LocalTime.of(11,0));
     }
 
     public static void setServletResponseErrorMessage(HttpServletResponse response, String message) throws IOException {

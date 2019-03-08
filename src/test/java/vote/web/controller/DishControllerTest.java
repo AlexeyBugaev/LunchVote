@@ -48,13 +48,14 @@ class DishControllerTest extends AbstractControllerTest{
     @Test
     void getAllDishesByRestaurantId() throws Exception {
         DISH1.setRestaurant(crudRestaurantRepository.getOne(100001));
-        DISH5.setRestaurant(crudRestaurantRepository.getOne(100001));
+        DISH2.setRestaurant(crudRestaurantRepository.getOne(100001));
+        DISH3.setRestaurant(crudRestaurantRepository.getOne(100001));
         mockMvc.perform(get(REST_URL + 100001 + "/getAll")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(getDishMatcher(DISH1,DISH5));
+                .andExpect(getDishMatcher(DISH1, DISH3, DISH2));
     }
 
     @Test
@@ -83,7 +84,7 @@ class DishControllerTest extends AbstractControllerTest{
         expected.setId(returned.getId());
 
         assertMatch(returned, expected);
-        assertMatch(crudDishRepository.findAll(), DISH1, DISH2, DISH3, DISH4, DISH5, DISH6, expected);
+        assertMatch(crudDishRepository.findAll(), DISH1, DISH2, DISH3, DISH4, DISH5, DISH6, DISH7, DISH8, DISH9, expected);
         RestaurantTestData.assertMatch(expected.getRestaurant(), RESTAURANT1);
     }
 }

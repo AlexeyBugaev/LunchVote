@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.restdocs.RestDocumentationContextProvider;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
@@ -13,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.restdocs.RestDocumentationExtension;
+import vote.Utils.AtomicIntegerConverter;
 import vote.repository.CrudDishRepository;
 import vote.repository.CrudRestaurantRepository;
+import vote.repository.CrudVoteHistoryRepository;
 import vote.repository.JpaUtil;
 import vote.service.UserService;
 
@@ -58,6 +61,9 @@ abstract public class AbstractControllerTest {
 
     @Autowired
     protected CrudDishRepository crudDishRepository;
+
+    @Autowired
+    protected CrudVoteHistoryRepository voteHistoryRepository;
 
     @Autowired
     private WebApplicationContext webApplicationContext;

@@ -8,6 +8,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.ResultActions;
 import vote.UserTestData;
 import vote.model.Restaurant;
+import vote.model.Role;
 import vote.model.User;
 import vote.web.json.JsonUtil;
 
@@ -21,8 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static vote.RestaurantTestData.*;
 import static vote.TestUtil.readFromJsonResultActions;
 import static vote.TestUtil.userHttpBasic;
-import static vote.UserTestData.ADMIN;
-import static vote.UserTestData.USER;
+import static vote.UserTestData.*;
 
 @Sql(scripts = "classpath:db/populateDB.sql")
 class RestaurantControllerTest extends AbstractControllerTest{
@@ -45,7 +45,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertMatch(crudRestaurantRepository.findAll(),RESTAURANT2, RESTAURANT3);
+        assertMatch(crudRestaurantRepository.findAll(),RESTAURANT, RESTAURANT2, RESTAURANT3);
     }
 
     @Test
@@ -55,7 +55,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(getMatcher(RESTAURANT2, RESTAURANT1, RESTAURANT3));
+                .andExpect(getMatcher(RESTAURANT1, RESTAURANT3, RESTAURANT2));
     }
 
     @Test
@@ -84,7 +84,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
         expected.setId(returned.getId());
 
         assertMatch(returned, expected);
-        assertMatch(crudRestaurantRepository.findAll(new Sort(Sort.Direction.ASC, "name")), RESTAURANT2, RESTAURANT1, RESTAURANT3, expected);
+        assertMatch(crudRestaurantRepository.findAll(new Sort(Sort.Direction.ASC, "name")), RESTAURANT1, RESTAURANT3, RESTAURANT, expected, RESTAURANT2);
     }
 
     @Test
@@ -96,45 +96,53 @@ class RestaurantControllerTest extends AbstractControllerTest{
                 .with(userHttpBasic(user)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-        assertThat(crudRestaurantRepository.getOne(restaurant.getId()).getVotes()).isEqualTo(votesForRestaurant+1);
-        assertThat(action.andReturn().getResponse().getContentAsString().equals("\"Restaurant voted\":\"BeefHouse\""));
+        assertThat(crudRestaurantRepository.getOne(restaurant.getId()).getVotes().get()).isEqualTo(votesForRestaurant+1);
+        assertThat(action.andReturn().getResponse().getContentAsString()).isEqualTo("{\"Restaurant voted\":\"Shinok\"}");
     }
 
-   //Tests below work under some preconditions
-
-   /* @Test
+   @Test
     void voteForRestaurantTwice() throws Exception {
-        Restaurant restaurant = new Restaurant(RESTAURANT1);
-        User user = new User(USER);
-        int votesForRestaurant = restaurant.getVotes();
-        ResultActions action = mockMvc.perform(get(REST_URL + "voteForRestaurant/" + restaurant.getId())
-                .with(userHttpBasic(user)))
-                .andExpect(status().isForbidden())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+       Restaurant restaurant = new Restaurant(RESTAURANT1);
+       User user = new User(VotedUser);
+       ResultActions action = mockMvc.perform(get(REST_URL + restaurant.getId()+ "/vote")
+               .with(userHttpBasic(user)))
+               .andExpect(status().isForbidden())
+               .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 
-        assertThat(action.andReturn().getResponse().getContentAsString().equals("\"errorMessage\":\"You cannot vote for one restaurant twice\""));
-    }*/
+       assertThat(action.andReturn().getResponse().getContentAsString()).isEqualTo("{\"errorMessage\":\"You cannot vote for one restaurant twice\"}");
+    }
 
-    /*@Test
-    void voteForRestaurantOutOfTime() throws Exception {
+    @Test
+    void changeVoteAfterEleven() throws Exception {
         Restaurant restaurant = new Restaurant(RESTAURANT2);
-        User user = new User(USER);
-        int votesForRestaurant = restaurant.getVotes();
-        ResultActions action = mockMvc.perform(get(REST_URL + "voteForRestaurant/" + restaurant.getId())
+        User user = new User(VotedUser);
+        ResultActions action = mockMvc.perform(get(REST_URL + restaurant.getId()+ "/vote")
                 .with(userHttpBasic(user)))
                 .andExpect(status().isForbidden())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 
-        assertThat(action.andReturn().getResponse().getContentAsString().equals("\"errorMessage\":\"Voting is available before 11 a.m.\""));
-    }*/
+        assertThat(action.andReturn().getResponse().getContentAsString()).isEqualTo("{\"errorMessage\":\"Change vote is unavailable after 11 a.m.\"}");
+    }
 
     @Test
     void getVotedRestaurant() throws Exception {
+        crudRestaurantRepository.getOne(100002).setVotes(new AtomicInteger(1));
         mockMvc.perform(get(REST_URL + "getVoted")
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(getRestaurantMatcher(RESTAURANT2));
+    }
+
+    @Test
+    void clearVotingData() throws Exception {
+        mockMvc.perform(get(REST_URL + "clearVotingData")
+                .with(userHttpBasic(UserTestData.ADMIN)))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+        crudRestaurantRepository.findAll().forEach(r -> assertThat(r.getVotes().get()).isEqualTo(0));
+        userService.getAll().forEach(user -> assertThat(user.getRestaurantVotedId()).isEqualTo(100000));
     }
 }

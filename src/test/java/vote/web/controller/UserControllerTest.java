@@ -9,6 +9,8 @@ import vote.model.Role;
 import vote.model.User;
 import vote.web.json.JsonUtil;
 import java.util.Collections;
+import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -89,5 +91,27 @@ class UserControllerTest extends AbstractControllerTest{
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(getUserMatcher(UserTestData.USER));
+    }
+
+    @Test
+    void getVoteHistory() throws Exception {
+        mockMvc.perform(get(RestaurantController.REST_URL + "/100001/vote")
+                .with(userHttpBasic(USER)))
+                .andExpect(status().isOk());
+        List voteHistory = voteHistoryRepository.findAll(USER_ID);
+        mockMvc.perform(get(REST_URL + USER_ID + "/voteHistory")
+                .with(userHttpBasic(ADMIN)))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+        voteHistoryAssertMatch(voteHistoryRepository.findAll(USER_ID), voteHistory);
+
+        voteHistory.clear();
+        mockMvc.perform(get(REST_URL + "clearVoteHistory")
+                .with(userHttpBasic(ADMIN)))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+        voteHistoryAssertMatch(voteHistoryRepository.findAll(USER_ID), voteHistory);
     }
 }
