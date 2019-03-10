@@ -32,7 +32,7 @@ class UserControllerTest extends AbstractControllerTest{
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(getUserMatcher(ADMIN, USER));
+                .andExpect(getUserMatcher(ADMIN, USER, VotedUser));
 }
 
     @Test
@@ -58,7 +58,7 @@ class UserControllerTest extends AbstractControllerTest{
         expected.setId(returned.getId());
 
         assertMatch(returned, expected);
-        assertMatch(userService.getAll(), ADMIN, expected, USER);
+        assertMatch(userService.getAll(), ADMIN, expected, USER, VotedUser);
     }
 
     @Test
@@ -67,7 +67,7 @@ class UserControllerTest extends AbstractControllerTest{
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertMatch(userService.getAll(), ADMIN);
+        assertMatch(userService.getAll(), ADMIN, VotedUser);
     }
 
     @Test
