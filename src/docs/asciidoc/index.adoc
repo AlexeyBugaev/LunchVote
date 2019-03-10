@@ -15,11 +15,17 @@
 
 - User can have a look on each restaurant menu, vote for restaurant, update the profile.
 
-- User can vote for a restaurant only before 11 a.m.
+- User cannot change his vote after 11 a.m.
 
 - User cannot vote for the same restaurant twice.
 
-- Admin can create/update/delete restaurants, dishes and users profile.
+- There is a history for votes that were made by a users.
+
+- Each history contains information on date of the vote, restaurant and list of dishes, user ID who made this vote.
+
+- Users can look through the history of his votes.
+
+- Admin can create/update/delete restaurants, dishes and users profile. Admin can clear vote data and history of votes.
 
 = Resources
 
@@ -81,19 +87,19 @@ include::{snippets}/vote-for-restaurant-twice/http-request.adoc[]
 
 include::{snippets}/vote-for-restaurant-twice/http-response.adoc[]
 
-=== Vote for restaurant after 11 a.m.
+=== Change vote after 11 a.m.
 
 ==== curl request
 
-include::{snippets}/vote-for-restaurant-out-of-time/curl-request.adoc[]
+include::{snippets}/change-vote-after-eleven/curl-request.adoc[]
 
 ==== Request structure
 
-include::{snippets}/vote-for-restaurant-out-of-time/http-request.adoc[]
+include::{snippets}/change-vote-after-eleven/http-request.adoc[]
 
 ==== Response structure
 
-include::{snippets}/vote-for-restaurant-out-of-time/http-response.adoc[]
+include::{snippets}/change-vote-after-eleven/http-response.adoc[]
 
 === Get restaurant selected by vote
 
@@ -108,6 +114,34 @@ include::{snippets}/get-voted-restaurant/http-request.adoc[]
 ==== Response structure
 
 include::{snippets}/get-voted-restaurant/http-response.adoc[]
+
+=== Get vote history
+
+==== curl request
+
+include::{snippets}/get-vote-history/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/get-vote-history/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/get-vote-history/http-response.adoc[]
+
+=== Clear vote history
+
+==== curl request
+
+include::{snippets}/clear-voting-data/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/clear-voting-data/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/clear-voting-data/http-response.adoc[]
 
 == User REST service
 
