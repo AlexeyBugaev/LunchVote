@@ -6,100 +6,37 @@
 
 <div id="toctitle">Table of Contents</div>
 
-*   [Description](##description)
-*   [Resources](#_resources)
-    *   [General REST service](#_general_rest_service)
-        *   [Get all restaurants](#_get_all_restaurants)
-            *   [curl request](#_curl_request)
-            *   [Request structure](#_request_structure)
-            *   [Response structure](#_response_structure)
-        *   [Get all dishes by restaurant id](#_get_all_dishes_by_restaurant_id)
-            *   [curl request](#_curl_request_2)
-            *   [Request structure](#_request_structure_2)
-            *   [Response structure](#_response_structure_2)
-        *   [Vote for restaurant](#_vote_for_restaurant)
-            *   [curl request](#_curl_request_3)
-            *   [Request structure](#_request_structure_3)
-            *   [Response structure](#_response_structure_3)
-        *   [Vote for same restaurant twice](#_vote_for_same_restaurant_twice)
-            *   [curl request](#_curl_request_4)
-            *   [Request structure](#_request_structure_4)
-            *   [Response structure](#_response_structure_4)
-        *   [Change vote after 11 a.m.](#_change_vote_after_11_a_m)
-            *   [curl request](#_curl_request_5)
-            *   [Request structure](#_request_structure_5)
-            *   [Response structure](#_response_structure_5)
-        *   [Get restaurant selected by vote](#_get_restaurant_selected_by_vote)
-            *   [curl request](#_curl_request_6)
-            *   [Request structure](#_request_structure_6)
-            *   [Response structure](#_response_structure_6)
-        *   [Get vote history](#_get_vote_history)
-            *   [curl request](#_curl_request_7)
-            *   [Request structure](#_request_structure_7)
-            *   [Response structure](#_response_structure_7)
-        *   [Clear vote history](#_clear_vote_history)
-            *   [curl request](#_curl_request_8)
-            *   [Request structure](#_request_structure_8)
-            *   [Response structure](#_response_structure_8)
-    *   [User REST service](#_user_rest_service)
-        *   [Get all users](#_get_all_users)
-            *   [curl request](#_curl_request_9)
-            *   [Request structure](#_request_structure_9)
-            *   [Response structure](#_response_structure_9)
-        *   [Get user](#_get_user)
-            *   [curl request](#_curl_request_10)
-            *   [Request structure](#_request_structure_10)
-            *   [Response structure](#_response_structure_10)
-        *   [Get user by email](#_get_user_by_email)
-            *   [curl request](#_curl_request_11)
-            *   [Request structure](#_request_structure_11)
-            *   [Response structure](#_response_structure_11)
-        *   [Delete user](#_delete_user)
-            *   [curl request](#_curl_request_12)
-            *   [Request structure](#_request_structure_12)
-            *   [Response structure](#_response_structure_12)
-        *   [Create user](#_create_user)
-            *   [curl request](#_curl_request_13)
-            *   [Request structure](#_request_structure_13)
-            *   [Response structure](#_response_structure_13)
-        *   [Update user](#_update_user)
-            *   [curl request](#_curl_request_14)
-            *   [Request structure](#_request_structure_14)
-            *   [Response structure](#_response_structure_14)
-    *   [Restaurant REST service](#_restaurant_rest_service)
-        *   [Get restaurant](#_get_restaurant)
-            *   [curl request](#_curl_request_15)
-            *   [Request structure](#_request_structure_15)
-            *   [Response structure](#_response_structure_15)
-        *   [Delete restaurant](#_delete_restaurant)
-            *   [curl request](#_curl_request_16)
-            *   [Request structure](#_request_structure_16)
-            *   [Response structure](#_response_structure_16)
-        *   [Create restaurant](#_create_restaurant)
-            *   [curl request](#_curl_request_17)
-            *   [Request structure](#_request_structure_17)
-            *   [Response structure](#_response_structure_17)
-        *   [Update restaurant](#_update_restaurant)
-            *   [curl request](#_curl_request_18)
-            *   [Request structure](#_request_structure_18)
-            *   [Response structure](#_response_structure_18)
-    *   [Dish REST service](#_dish_rest_service)
-        *   [Get dish](#_get_dish)
-            *   [curl request](#_curl_request_19)
-            *   [Request structure](#_request_structure_19)
-            *   [Response structure](#_response_structure_19)
-        *   [Delete dish](#_delete_dish)
-            *   [curl request](#_curl_request_20)
-            *   [Request structure](#_request_structure_20)
-            *   [Response structure](#_response_structure_20)
-        *   [Create dish](#_create_dish)
-            *   [curl request](#_curl_request_21)
-            *   [Request structure](#_request_structure_21)
-            *   [Response structure](#_response_structure_21)
-        *   [Update dish](#_update_dish)
-            *   [curl request](#_curl_request_22)
-            *   [Request structure](#_request_structure_22)
-            *   [Response structure](#_response_structure_22)
+*   [Description](#description)
+*   [Resources](#resources)
+    *   [General REST service](#general-rest-service)
+        *   [Get all restaurants](#get-all-restaurants)
+        *   [Get all dishes by restaurant id](#get-all-dishes-by-restaurant-id)
+        *   [Vote for restaurant](#vote-for-restaurant)
+        *   [Vote for same restaurant twice](#vote-for-same-restaurant-twice)
+        *   [Change vote after 11 a.m.](#change-vote-after-11-a.m.)
+        *   [Get restaurant selected by vote](#get-restaurant-selected-by-vote)
+        *   [Get vote history](#get-vote-history)
+        *   [Clear vote history](#clear-vote-history)
+        
+    *   [User REST service](#user-rest-service)
+        *   [Get all users](#get-all-users)
+        *   [Get user](#get-user)
+        *   [Get user by email](#get-user-by-email)
+        *   [Delete user](#delete-user)
+        *   [Create user](#create-user)
+        *   [Update user](#update-user)
+
+    *   [Restaurant REST service](#restaurant-rest-service)
+        *   [Get restaurant](#get-restaurant)
+        *   [Delete restaurant](#delete-restaurant)
+        *   [Create restaurant](#create-restaurant)
+        *   [Update restaurant](#update-restaurant)
+        
+    *   [Dish REST service](#dish-rest-service)
+        *   [Get dish](#get-dish)
+        *   [Delete dish](#delete-dish)
+        *   [Create dish](#create-dish)
+        *   [Update dish](#update-dish)
 
 </div>
 
@@ -109,7 +46,7 @@
 
 <div class="sect1">
 
-## Description
+##  [Description]()
 
 <div class="sectionbody">
 
@@ -141,21 +78,20 @@
 
 </div>
 
-# [Resources](#_resources)
-
+# [Resources]()
 <div class="sect1">
 
-## [General REST service](#_general_rest_service)
+## [General REST service]()
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get all restaurants](#_get_all_restaurants)
+### [Get all restaurants]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request)
+#### curl request
 
 <div class="listingblock">
 
@@ -171,7 +107,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure)
+#### Request structure
 
 <div class="listingblock">
 
@@ -189,7 +125,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure)
+#### Response structure
 
 <div class="listingblock">
 
@@ -229,11 +165,11 @@
 
 <div class="sect2">
 
-### [Get all dishes by restaurant id](#_get_all_dishes_by_restaurant_id)
+### [Get all dishes by restaurant id]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_2)
+#### curl request
 
 <div class="listingblock">
 
@@ -249,7 +185,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_2)
+#### Request structure
 
 <div class="listingblock">
 
@@ -267,7 +203,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_2)
+#### Response structure
 
 <div class="listingblock">
 
@@ -310,11 +246,11 @@
 
 <div class="sect2">
 
-### [Vote for restaurant](#_vote_for_restaurant)
+### [Vote for restaurant]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_3)
+#### curl request
 
 <div class="listingblock">
 
@@ -330,7 +266,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_3)
+#### Request structure
 
 <div class="listingblock">
 
@@ -348,7 +284,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_3)
+#### Response structure
 
 <div class="listingblock">
 
@@ -378,11 +314,11 @@
 
 <div class="sect2">
 
-### [Vote for same restaurant twice](#_vote_for_same_restaurant_twice)
+### [Vote for same restaurant twice]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_4)
+#### curl request
 
 <div class="listingblock">
 
@@ -398,7 +334,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_4)
+#### Request structure
 
 <div class="listingblock">
 
@@ -416,7 +352,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_4)
+#### Response structure
 
 <div class="listingblock">
 
@@ -446,11 +382,11 @@
 
 <div class="sect2">
 
-### [Change vote after 11 a.m.](#_change_vote_after_11_a_m)
+### [Change vote after 11 a.m.]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_5)
+#### curl request
 
 <div class="listingblock">
 
@@ -466,7 +402,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_5)
+#### Request structure
 
 <div class="listingblock">
 
@@ -484,7 +420,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_5)
+#### Response structure
 
 <div class="listingblock">
 
@@ -514,11 +450,11 @@
 
 <div class="sect2">
 
-### [Get restaurant selected by vote](#_get_restaurant_selected_by_vote)
+### [Get restaurant selected by vote]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_6)
+#### curl request
 
 <div class="listingblock">
 
@@ -534,7 +470,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_6)
+#### Request structure
 
 <div class="listingblock">
 
@@ -552,7 +488,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_6)
+#### Response structure
 
 <div class="listingblock">
 
@@ -584,11 +520,11 @@
 
 <div class="sect2">
 
-### [Get vote history](#_get_vote_history)
+### [Get vote history]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_7)
+#### curl request
 
 <div class="listingblock">
 
@@ -604,7 +540,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_7)
+#### Request structure
 
 <div class="listingblock">
 
@@ -622,7 +558,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_7)
+#### Response structure
 
 <div class="listingblock">
 
@@ -650,11 +586,11 @@
 
 <div class="sect2">
 
-### [Clear vote history](#_clear_vote_history)
+### [Clear vote history]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_8)
+#### curl request
 
 <div class="listingblock">
 
@@ -670,7 +606,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_8)
+#### Request structure
 
 <div class="listingblock">
 
@@ -688,7 +624,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_8)
+#### Response structure
 
 <div class="listingblock">
 
@@ -720,17 +656,17 @@
 
 <div class="sect1">
 
-## [User REST service](#_user_rest_service)
+## [User REST service]()
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get all users](#_get_all_users)
+### [Get all users]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_9)
+#### curl request
 
 <div class="listingblock">
 
@@ -746,7 +682,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_9)
+#### Request structure
 
 <div class="listingblock">
 
@@ -764,7 +700,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_9)
+#### Response structure
 
 <div class="listingblock">
 
@@ -813,11 +749,11 @@
 
 <div class="sect2">
 
-### [Get user](#_get_user)
+### [Get user]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_10)
+#### curl request
 
 <div class="listingblock">
 
@@ -833,7 +769,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_10)
+#### Request structure
 
 <div class="listingblock">
 
@@ -851,7 +787,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_10)
+#### Response structure
 
 <div class="listingblock">
 
@@ -886,11 +822,11 @@
 
 <div class="sect2">
 
-### [Get user by email](#_get_user_by_email)
+### [Get user by email]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_11)
+#### curl request
 
 <div class="listingblock">
 
@@ -906,7 +842,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_11)
+#### Request structure
 
 <div class="listingblock">
 
@@ -924,7 +860,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_11)
+#### Response structure
 
 <div class="listingblock">
 
@@ -959,11 +895,11 @@
 
 <div class="sect2">
 
-### [Delete user](#_delete_user)
+### [Delete user]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_12)
+#### curl request
 
 <div class="listingblock">
 
@@ -979,7 +915,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_12)
+#### Request structure
 
 <div class="listingblock">
 
@@ -997,7 +933,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_12)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1021,11 +957,11 @@
 
 <div class="sect2">
 
-### [Create user](#_create_user)
+### [Create user]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_13)
+#### curl request
 
 <div class="listingblock">
 
@@ -1050,7 +986,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_13)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1079,7 +1015,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_13)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1115,11 +1051,11 @@
 
 <div class="sect2">
 
-### [Update user](#_update_user)
+### [Update user]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_14)
+#### curl request
 
 <div class="listingblock">
 
@@ -1144,7 +1080,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_14)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1173,7 +1109,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_14)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1201,17 +1137,17 @@
 
 <div class="sect1">
 
-## [Restaurant REST service](#_restaurant_rest_service)
+## [Restaurant REST service]()
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get restaurant](#_get_restaurant)
+### [Get restaurant]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_15)
+#### curl request
 
 <div class="listingblock">
 
@@ -1227,7 +1163,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_15)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1245,7 +1181,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_15)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1277,11 +1213,11 @@
 
 <div class="sect2">
 
-### [Delete restaurant](#_delete_restaurant)
+### [Delete restaurant]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_16)
+#### curl request
 
 <div class="listingblock">
 
@@ -1297,7 +1233,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_16)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1315,7 +1251,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_16)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1339,11 +1275,11 @@
 
 <div class="sect2">
 
-### [Create restaurant](#_create_restaurant)
+### [Create restaurant]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_17)
+#### curl request
 
 <div class="listingblock">
 
@@ -1364,7 +1300,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_17)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1389,7 +1325,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_17)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1422,11 +1358,11 @@
 
 <div class="sect2">
 
-### [Update restaurant](#_update_restaurant)
+### [Update restaurant]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_18)
+#### curl request
 
 <div class="listingblock">
 
@@ -1448,7 +1384,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_18)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1474,7 +1410,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_18)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1502,17 +1438,17 @@
 
 <div class="sect1">
 
-## [Dish REST service](#_dish_rest_service)
+## [Dish REST service]()
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get dish](#_get_dish)
+### [Get dish]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_19)
+#### curl request
 
 <div class="listingblock">
 
@@ -1528,7 +1464,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_19)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1546,7 +1482,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_19)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1579,11 +1515,11 @@
 
 <div class="sect2">
 
-### [Delete dish](#_delete_dish)
+### [Delete dish]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_20)
+#### curl request
 
 <div class="listingblock">
 
@@ -1599,7 +1535,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_20)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1617,7 +1553,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_20)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1641,11 +1577,11 @@
 
 <div class="sect2">
 
-### [Create dish](#_create_dish)
+### [Create dish]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_21)
+#### curl request
 
 <div class="listingblock">
 
@@ -1671,7 +1607,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_21)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1701,7 +1637,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_21)
+#### Response structure
 
 <div class="listingblock">
 
@@ -1739,11 +1675,11 @@
 
 <div class="sect2">
 
-### [Update dish](#_update_dish)
+### [Update dish]()
 
 <div class="sect3">
 
-#### [curl request](#_curl_request_22)
+#### curl request
 
 <div class="listingblock">
 
@@ -1765,7 +1701,7 @@
 
 <div class="sect3">
 
-#### [Request structure](#_request_structure_22)
+#### Request structure
 
 <div class="listingblock">
 
@@ -1791,7 +1727,7 @@
 
 <div class="sect3">
 
-#### [Response structure](#_response_structure_22)
+#### Response structure
 
 <div class="listingblock">
 
