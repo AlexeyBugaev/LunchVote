@@ -46,7 +46,7 @@
 
 <div class="sect1">
 
-##  [Description]()
+##  [Description](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sectionbody">
 
@@ -78,16 +78,16 @@
 
 </div>
 
-# [Resources]()
+# [Resources](#Lunchvote-REST-Service-API-Guide)
 <div class="sect1">
 
-## [General REST service]()
+## [General REST service](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get all restaurants]()
+### [Get all restaurants](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -165,7 +165,7 @@
 
 <div class="sect2">
 
-### [Get all dishes by restaurant id]()
+### [Get all dishes by restaurant id](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -246,7 +246,7 @@
 
 <div class="sect2">
 
-### [Vote for restaurant]()
+### [Vote for restaurant](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -314,7 +314,7 @@
 
 <div class="sect2">
 
-### [Vote for same restaurant twice]()
+### [Vote for same restaurant twice](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -382,7 +382,7 @@
 
 <div class="sect2">
 
-### [Change vote after 11 a.m.]()
+### [Change vote after 11 a.m.](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -450,7 +450,7 @@
 
 <div class="sect2">
 
-### [Get restaurant selected by vote]()
+### [Get restaurant selected by vote](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -520,7 +520,7 @@
 
 <div class="sect2">
 
-### [Get vote history]()
+### [Get vote history](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -586,7 +586,7 @@
 
 <div class="sect2">
 
-### [Clear vote history]()
+### [Clear vote history](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -656,13 +656,13 @@
 
 <div class="sect1">
 
-## [User REST service]()
+## [User REST service](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get all users]()
+### [Get all users](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -749,7 +749,7 @@
 
 <div class="sect2">
 
-### [Get user]()
+### [Get user](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -822,7 +822,7 @@
 
 <div class="sect2">
 
-### [Get user by email]()
+### [Get user by email](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -895,7 +895,7 @@
 
 <div class="sect2">
 
-### [Delete user]()
+### [Delete user](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -957,7 +957,7 @@
 
 <div class="sect2">
 
-### [Create user]()
+### [Create user](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1051,7 +1051,7 @@
 
 <div class="sect2">
 
-### [Update user]()
+### [Update user](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1137,13 +1137,13 @@
 
 <div class="sect1">
 
-## [Restaurant REST service]()
+## [Restaurant REST service](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get restaurant]()
+### [Get restaurant](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1213,7 +1213,7 @@
 
 <div class="sect2">
 
-### [Delete restaurant]()
+### [Delete restaurant](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1275,7 +1275,7 @@
 
 <div class="sect2">
 
-### [Create restaurant]()
+### [Create restaurant](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1358,7 +1358,7 @@
 
 <div class="sect2">
 
-### [Update restaurant]()
+### [Update restaurant](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1438,13 +1438,13 @@
 
 <div class="sect1">
 
-## [Dish REST service]()
+## [Dish REST service](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sectionbody">
 
 <div class="sect2">
 
-### [Get dish]()
+### [Get dish](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1515,7 +1515,7 @@
 
 <div class="sect2">
 
-### [Delete dish]()
+### [Delete dish](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1577,7 +1577,7 @@
 
 <div class="sect2">
 
-### [Create dish]()
+### [Create dish](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -1675,7 +1675,7 @@
 
 <div class="sect2">
 
-### [Update dish]()
+### [Update dish](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
