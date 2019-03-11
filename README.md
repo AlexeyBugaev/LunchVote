@@ -17,6 +17,7 @@
         *   [Get restaurant selected by vote](#get-restaurant-selected-by-vote)
         *   [Get vote history](#get-vote-history)
         *   [Clear vote history](#clear-vote-history)
+        *   [Clear voting data](#clear-voting-data)
         
     *   [User REST service](#user-rest-service)
         *   [Get all users](#get-all-users)
@@ -530,6 +531,93 @@
 
 <div class="content">
 
+    $ curl 'http://localhost:8080/rest/users/100004/voteHistory' -i -u 'admin@gmail.com:admin' -X GET
+
+</div>
+
+</div>
+
+</div>
+
+<div class="sect3">
+
+#### Request structure
+
+<div class="listingblock">
+
+<div class="content">
+
+    GET /rest/users/100004/voteHistory HTTP/1.1
+    Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
+    Host: localhost:8080
+
+</div>
+
+</div>
+
+</div>
+
+<div class="sect3">
+
+#### Response structure
+
+<div class="listingblock">
+
+<div class="content">
+
+    HTTP/1.1 200 OK
+    Pragma: no-cache
+    X-XSS-Protection: 1; mode=block
+    Expires: 0
+    X-Frame-Options: DENY
+    X-Content-Type-Options: nosniff
+    Content-Length: 468
+    Content-Type: application/json;charset=UTF-8
+    Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+    
+    [ {
+      "id" : 100016,
+      "userId" : 100004,
+      "date" : "2019-03-11",
+      "dishName" : "BeefSteak",
+      "price" : 1200,
+      "restaurantName" : "BeefHouse"
+    }, {
+      "id" : 100017,
+      "userId" : 100004,
+      "date" : "2019-03-11",
+      "dishName" : "GrilledChicken",
+      "price" : 800,
+      "restaurantName" : "BeefHouse"
+    }, {
+      "id" : 100018,
+      "userId" : 100004,
+      "date" : "2019-03-11",
+      "dishName" : "PorkSteak",
+      "price" : 1000,
+      "restaurantName" : "BeefHouse"
+    } ]
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="sect2">
+
+### [Clear vote history](#Lunchvote-REST-Service-API-Guide)
+
+<div class="sect3">
+
+#### curl request
+
+<div class="listingblock">
+
+<div class="content">
+
     $ curl 'http://localhost:8080/rest/users/clearVoteHistory' -i -u 'admin@gmail.com:admin' -X GET
 
 </div>
@@ -573,7 +661,7 @@
     Content-Length: 28
     Content-Type: application/json;charset=UTF-8
     Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-
+    
     "Voting history was cleared"
 
 </div>
@@ -584,9 +672,11 @@
 
 </div>
 
-<div class="sect2">
+</div>
 
-### [Clear vote history](#Lunchvote-REST-Service-API-Guide)
+</div>
+
+### [Clear voting data](#Lunchvote-REST-Service-API-Guide)
 
 <div class="sect3">
 
@@ -639,7 +729,7 @@
     Content-Type: application/json;charset=UTF-8
     Cache-Control: no-cache, no-store, max-age=0, must-revalidate
     Content-Length: 25
-
+    
     "Voting data was cleared"
 
 </div>

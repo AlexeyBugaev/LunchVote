@@ -105,8 +105,17 @@ class UserControllerTest extends AbstractControllerTest{
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
         voteHistoryAssertMatch(voteHistoryRepository.findAll(USER_ID), voteHistory);
+    }
 
+    @Test
+    void clearVoteHistory() throws Exception {
+        mockMvc.perform(get(RestaurantController.REST_URL + "/100001/vote")
+                .with(userHttpBasic(USER)))
+                .andExpect(status().isOk());
+
+        List voteHistory = voteHistoryRepository.findAll(USER_ID);
         voteHistory.clear();
+
         mockMvc.perform(get(REST_URL + "clearVoteHistory")
                 .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())

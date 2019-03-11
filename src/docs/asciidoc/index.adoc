@@ -133,6 +133,20 @@ include::{snippets}/get-vote-history/http-response.adoc[]
 
 ==== curl request
 
+include::{snippets}/clear-vote-history/curl-request.adoc[]
+
+==== Request structure
+
+include::{snippets}/clear-voting-data/http-request.adoc[]
+
+==== Response structure
+
+include::{snippets}/clear-voting-data/http-response.adoc[]
+
+=== Clear voting data
+
+==== curl request
+
 include::{snippets}/clear-voting-data/curl-request.adoc[]
 
 ==== Request structure
