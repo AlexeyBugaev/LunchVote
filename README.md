@@ -6,7 +6,7 @@
 
 <div id="toctitle">Table of Contents</div>
 
-*   [Description](#_description)
+*   [Description](##description)
 *   [Resources](#_resources)
     *   [General REST service](#_general_rest_service)
         *   [Get all restaurants](#_get_all_restaurants)
@@ -109,7 +109,7 @@
 
 <div class="sect1">
 
-## [Description](#_description)
+## Description
 
 <div class="sectionbody">
 
